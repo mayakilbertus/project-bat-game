@@ -1,11 +1,11 @@
-# Bat Game
+# Bat Game 🦇
 
 ## v.1
 
 ### milestone 1
 
-<p>[] create board</p>
-<p>[] let rectangle move inside the board (p, down, left, right)</p>
+<p>[x] create board</p>
+<p>[] let rectangle move inside the board (up, down, left, right)</p>
 
 ### milestone 2
 
@@ -37,4 +37,5 @@
 
 <p>[] add different levels --> food displays shorter</p>
 <p>[] different type of food (adds different energy)</p>
+<p>[] add other bats or something to loose energy</p>
 <p>[] energy reduces during day time in a certain percentage to start next level with lower energy</p>
