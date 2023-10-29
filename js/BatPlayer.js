@@ -4,6 +4,7 @@ class BatPlayer {
     this.height = 2;
     this.positionX = 0;
     this.positionY = 0;
+    this.energy = 0;
     this.batPlayer = null;
 
     this.board = document.getElementById("board");
@@ -47,6 +48,20 @@ class BatPlayer {
       this.positionX = this.positionX + 0.5;
       this.batPlayer.style.left = this.positionX + "rem";
     }
+  }
+
+  checkForPrey(preyArr) {
+    for (let i = 0; i < preyArr.length; i++) {
+      if (
+        this.positionX < preyArr[i].positionX + preyArr[i].width &&
+        this.positionX + this.width > preyArr[i].positionX &&
+        this.positionY < preyArr[i].positionY + preyArr[i].height &&
+        this.positionY + this.height > preyArr[i].positionY
+      ) {
+        return i;
+      }
+    }
+    return false;
   }
 }
 

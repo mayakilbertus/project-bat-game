@@ -12,6 +12,8 @@ class Prey {
     this.positionY = Math.floor(
       Math.random() * (this.boardHeight - this.height + 1)
     );
+
+    this.createPrey();
   }
 
   createPrey() {
@@ -25,7 +27,6 @@ class Prey {
 
     const board = document.getElementById("board");
     board.appendChild(this.prey);
-    console.log("prey created");
   }
 }
 
