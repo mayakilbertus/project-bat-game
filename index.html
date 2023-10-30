@@ -3,12 +3,26 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600&family=Barlow:wght@400;500;600;700&family=Inconsolata:wght@400;600;700&family=Inter:wght@400;500;700&family=Pixelify+Sans:wght@400;500;600;700&family=Rubik:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="./styles/style.css" />
     <title>Document</title>
   </head>
   <body>
-    <div id="board">
-      <div id="batPlayer"></div>
+    <h1>Bat Game</h1>
+    <div class="gameArea">
+      <div>
+        <p id="energyLevel">Your energy level: 0%</p>
+        <p id="time">22:00 h</p>
+      </div>
+      <div id="board">
+        <img id="board-background" src="./src/grass.png" />
+        <img id="batPlayer" src="./src/batFlap.gif" />
+      </div>
     </div>
     <script src="./js/BatPlayer.js"></script>
     <script src="./js/Prey.js"></script>

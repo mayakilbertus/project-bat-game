@@ -1,7 +1,7 @@
 class BatPlayer {
   constructor() {
-    this.width = 2;
-    this.height = 2;
+    this.width = 5;
+    this.height = 7;
     this.positionX = 0;
     this.positionY = 0;
     this.energy = 0;
@@ -24,33 +24,35 @@ class BatPlayer {
 
   moveBatUp() {
     if (this.positionY < this.boardHeight - this.height) {
-      this.positionY = this.positionY + 0.5;
+      this.positionY = this.positionY + 0.6;
       this.batPlayer.style.bottom = this.positionY + "rem";
     }
   }
 
   moveBatDown() {
     if (this.positionY > 0) {
-      this.positionY = this.positionY - 0.5;
+      this.positionY = this.positionY - 0.6;
       this.batPlayer.style.bottom = this.positionY + "rem";
     }
   }
 
   moveBatLeft() {
     if (this.positionX > 0) {
-      this.positionX = this.positionX - 0.5;
+      this.positionX = this.positionX - 0.6;
       this.batPlayer.style.left = this.positionX + "rem";
     }
   }
 
   moveBatRight() {
     if (this.positionX < this.boardWidth - this.width) {
-      this.positionX = this.positionX + 0.5;
+      this.positionX = this.positionX + 0.6;
       this.batPlayer.style.left = this.positionX + "rem";
     }
   }
 
   checkForPrey(preyArr) {
+    const biteSound = new Audio("./src/bite-sound.mp3");
+    const energyLevel = document.getElementById("energyLevel");
     for (let i = 0; i < preyArr.length; i++) {
       if (
         this.positionX < preyArr[i].positionX + preyArr[i].width &&
@@ -59,10 +61,17 @@ class BatPlayer {
         this.positionY + this.height > preyArr[i].positionY
       ) {
         // const preyID =
+        biteSound.play();
+        this.energy += 5;
         return [preyArr[i], i];
       }
     }
+    energyLevel.innerHTML = `Your energy level: ${this.energy}%`;
     return false;
+  }
+
+  showEnergyLevel() {
+    return this.energy;
   }
 }
 

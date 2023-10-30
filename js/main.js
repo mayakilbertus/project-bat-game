@@ -1,56 +1,72 @@
-let counter = 0;
+let counterPrey = 0;
 const preyArr = [];
 
 setInterval(() => {
-  if (counter < 3) {
-    counter++;
-    const prey = new Prey();
-    prey.createPrey(counter);
-    preyArr.push(prey);
-  }
+  counterPrey++;
+  const prey = new Prey();
+  prey.createPrey(counterPrey);
+  preyArr.push(prey);
 }, 3000);
+
+setInterval(() => {
+  preyElement.removePrey(preyArr[0].prey.getAttribute("id"));
+  preyArr.shift();
+}, 7000);
+
+let counterGameTime = 22;
+const timeElement = document.getElementById("time");
+
+const timer = setInterval(() => {
+  if (counterGameTime == 24) {
+    counterGameTime = 0;
+    timeElement.innerHTML = `${counterGameTime}:00 h`;
+  } else {
+    counterGameTime++;
+    timeElement.innerHTML = `${counterGameTime}:00 h`;
+  }
+}, 8000);
+
+setTimeout(() => {
+  clearInterval(timer);
+  if (batPlayer.thi > 80) {
+    window.alert("You survived the day!");
+  } else {
+    window.alert("You died!");
+  }
+}, 70000);
 
 document.addEventListener("keydown", (event) => {
   event.preventDefault;
-  const biteSound = new Audio("./src/bite-sound.mp3");
   if (event.code === "ArrowUp") {
     batPlayer.moveBatUp();
     const preyDetect = batPlayer.checkForPrey(preyArr);
     if (preyDetect) {
       preyArr.splice(preyDetect[1], 1);
       preyElement.removePrey(preyDetect[0].prey.getAttribute("id"));
-      biteSound.play();
     }
-    // console.log(preyArr);
   } else if (event.code === "ArrowDown") {
     batPlayer.moveBatDown();
     const preyDetect = batPlayer.checkForPrey(preyArr);
-    console.log(preyDetect);
 
     if (preyDetect) {
       preyArr.splice(preyDetect[1], 1);
       preyElement.removePrey(preyDetect[0].prey.getAttribute("id"));
-      biteSound.play();
     }
   } else if (event.code === "ArrowRight") {
     batPlayer.moveBatRight();
     const preyDetect = batPlayer.checkForPrey(preyArr);
-    console.log(preyDetect);
 
     if (preyDetect) {
       preyArr.splice(preyDetect[1], 1);
       preyElement.removePrey(preyDetect[0].prey.getAttribute("id"));
-      biteSound.play();
     }
   } else if (event.code === "ArrowLeft") {
     batPlayer.moveBatLeft();
     const preyDetect = batPlayer.checkForPrey(preyArr);
-    console.log(preyDetect);
 
     if (preyDetect) {
       preyArr.splice(preyDetect[1], 1);
       preyElement.removePrey(preyDetect[0].prey.getAttribute("id"));
-      biteSound.play();
     }
   }
 });
