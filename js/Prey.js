@@ -12,11 +12,9 @@ class Prey {
     this.positionY = Math.floor(
       Math.random() * (this.boardHeight - this.height + 1)
     );
-
-    this.createPrey();
   }
 
-  createPrey() {
+  createPrey(counter) {
     this.prey = document.createElement("div");
     this.prey.style.height = this.height + "rem";
     this.prey.style.width = this.width + "rem";
@@ -24,11 +22,14 @@ class Prey {
     this.prey.style.position = "absolute";
     this.prey.style.bottom = this.positionY + "rem";
     this.prey.style.left = this.positionX + "rem";
+    this.prey.setAttribute("id", `prey${counter}`);
+    this.board = document.getElementById("board");
+    this.board.appendChild(this.prey);
+  }
 
-    const board = document.getElementById("board");
-    board.appendChild(this.prey);
+  removePrey(id) {
+    const eatenPreyElement = document.getElementById(id);
+    this.board.removeChild(eatenPreyElement);
   }
 }
-
-const prey = new Prey();
-prey.createPrey();
+const preyElement = new Prey();

@@ -58,7 +58,8 @@ class BatPlayer {
         this.positionY < preyArr[i].positionY + preyArr[i].height &&
         this.positionY + this.height > preyArr[i].positionY
       ) {
-        return i;
+        // const preyID =
+        return [preyArr[i], i];
       }
     }
     return false;
