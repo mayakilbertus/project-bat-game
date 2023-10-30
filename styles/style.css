@@ -35,3 +35,10 @@ h1 {
   z-index: 1;
   transform: scaleX(-1);
 }
+
+#test-bat {
+  height: 64px;
+  width: 48px;
+
+  background: url("/src/bat-flappy.png") 0px 0px;
+}

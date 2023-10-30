@@ -5,31 +5,31 @@
 ### milestone 1
 
 <p>[x] create board</p>
-<p>[] let rectangle move inside the board (up, down, left, right)</p>
+<p>[x] let rectangle move inside the board (up, down, left, right)</p>
 
 ### milestone 2
 
-<p>[] create food (2nd rectangle)</p>
-<p>[] cause collision --> disappers</p>
+<p>[x] create food (2nd rectangle)</p>
+<p>[x] cause collision --> disappers</p>
 
 ### milestone 3
 
-<p>[] adding energy to bat after collision</p>
+<p>[x] adding energy to bat after collision</p>
 
 ## v.2
 
 ### milestone 1
 
-<p>[] display food randomly</p>
-<p>[] make it disapper after certain amount of time</p>
+<p>[x] display food randomly</p>
+<p>[x] make it disapper after certain amount of time</p>
 
 ### milestone 2
 
-<p>[] display energy</p>
+<p>[x] display energy</p>
 
 ### milestone 3
 
-<p>[] set haunting time (timer)</p>
+<p>[x] set haunting time (timer)</p>
 
 ## v.3
 

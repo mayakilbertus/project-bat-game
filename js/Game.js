@@ -3,11 +3,14 @@ class Game {
     this.batPlayer = new BatPlayer();
     this.preyArr = [];
     this.counterPrey = 0;
-    this.counterGameTime = 22;
+    this.dateTime = 22;
+    this.level = 0;
+
+    this.preyElement = null;
   }
 
   start() {
-    this.whatever();
+    this.detectPlayerMovement();
     setInterval(() => {
       this.counterPrey++;
       this.preyElement = new Prey();
@@ -22,17 +25,17 @@ class Game {
 
     const timeElement = document.getElementById("time");
     const timer = setInterval(() => {
-      if (this.counterGameTime == 24) {
-        this.counterGameTime = 0;
-        timeElement.innerHTML = `${this.counterGameTime}:00 h`;
+      if (this.dateTime == 24) {
+        this.dateTime = 0;
+        timeElement.innerHTML = `${this.dateTime}:00 h`;
       } else {
-        this.counterGameTime++;
-        timeElement.innerHTML = `${this.counterGameTime}:00 h`;
+        this.dateTime++;
+        timeElement.innerHTML = `${this.dateTime}:00 h`;
       }
     }, 8000);
   }
 
-  whatever() {
+  detectPlayerMovement() {
     document.addEventListener("keydown", (event) => {
       event.preventDefault;
       switch (event.code) {
