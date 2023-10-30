@@ -28,7 +28,7 @@ const timer = setInterval(() => {
 
 setTimeout(() => {
   clearInterval(timer);
-  if (batPlayer.thi > 80) {
+  if (batPlayer.showEnergyLevel() >= 80) {
     window.alert("You survived the day!");
   } else {
     window.alert("You died!");
