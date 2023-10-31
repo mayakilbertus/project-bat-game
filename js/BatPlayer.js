@@ -1,7 +1,7 @@
 class BatPlayer {
   constructor() {
-    this.width = 5;
-    this.height = 7;
+    this.width = 3;
+    this.height = 4;
     this.positionX = 0;
     this.positionY = 0;
     this.energy = 80;
@@ -10,12 +10,12 @@ class BatPlayer {
     this.board = document.getElementById("board");
     this.boardHeight = this.board.offsetHeight / 16;
     this.boardWidth = this.board.offsetWidth / 16;
+    this.batPlayer = document.getElementById("batPlayer");
 
     this.createBat();
   }
 
   createBat() {
-    this.batPlayer = document.getElementById("batPlayer");
     this.batPlayer.style.height = this.height + "rem";
     this.batPlayer.style.width = this.width + "rem";
     this.batPlayer.style.left = this.positionX + "rem";
@@ -62,7 +62,9 @@ class BatPlayer {
       ) {
         // const preyID =
         biteSound.play();
-        this.energy += 5;
+        if (this.energy <= 100) {
+          this.energy += 5;
+        }
         return [preyArr[i], i];
       }
     }
@@ -72,6 +74,35 @@ class BatPlayer {
 
   showEnergyLevel() {
     return this.energy;
+  }
+
+  reduceEnergy() {
+    this.energy -= this.energy * 0.8;
+  }
+
+  animateBat(arrowKey) {
+    let position = 48;
+    let startOfSpriteRow = 0;
+    if (arrowKey === "ArrowDown") {
+      startOfSpriteRow = 0;
+    } else if (arrowKey === "ArrowUp") {
+      startOfSpriteRow = 64;
+    } else if (arrowKey === "ArrowRight") {
+      startOfSpriteRow = 128;
+    } else if (arrowKey === "ArrowLeft") {
+      startOfSpriteRow = 192;
+    } else {
+      startOfSpriteRow = 0;
+    }
+
+    // setInterval(() => {
+    this.batPlayer.style.backgroundPosition = `-${position}px ${startOfSpriteRow}px`;
+    //   if (position < 256) {
+    //     position += 48;
+    //   } else {
+    //     position = 48;
+    //   }
+    // }, 1000);
   }
 }
 

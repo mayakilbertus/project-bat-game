@@ -7,7 +7,7 @@ const testBat = document.getElementById("test-bat");
 const animateBat = () => {
   let position = 48;
   setInterval(() => {
-    testBat.style.backgroundPosition = `-${position}px 128px`;
+    testBat.style.backgroundPosition = `-${position}px 0px`;
     if (position < 256) {
       position += 48;
     } else {

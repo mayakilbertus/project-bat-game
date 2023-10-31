@@ -8,6 +8,9 @@ class Game {
 
     this.preyElement = null;
     this.board = document.getElementById("board");
+    this.preyInterval = 7500;
+
+    this.batPlayer.animateBat();
   }
 
   start(level) {
@@ -23,10 +26,11 @@ class Game {
       this.preyArr.push(this.preyElement);
     }, 4000);
 
-    setInterval(() => {
+    const deletePreyTimer = setInterval(() => {
       this.preyElement.removePrey(this.preyArr[0].prey.getAttribute("id"));
       this.preyArr.shift();
-    }, 7000);
+    }, this.calculatePreyInterval(level));
+
     //Daytime
     const timeElement = document.getElementById("time");
     const timer = setInterval(() => {
@@ -41,7 +45,21 @@ class Game {
 
     setTimeout(() => {
       this.end();
-    }, 15000);
+    }, 30000);
+  }
+
+  calculatePreyInterval(level) {
+    const basisReduction = 800;
+    const levelReduction = 2 * level;
+
+    const totalReduction = basisReduction * (1 / levelReduction);
+    if (totalReduction < 2000) {
+      this.preyInterval -= totalReduction;
+      console.log(this.preyInterval);
+    } else {
+      this.preyInterval -= 2000;
+    }
+    return this.preyInterval;
   }
 
   detectPlayerMovement() {
@@ -49,6 +67,7 @@ class Game {
       event.preventDefault;
       switch (event.code) {
         case "ArrowUp":
+          this.batPlayer.animateBat("ArrowUp");
           this.batPlayer.moveBatUp();
           const preyDetectUp = this.batPlayer.checkForPrey(this.preyArr);
           // this.preyDetectUp = this.batPlayer.checkForPrey(this.preyArr);
@@ -64,6 +83,7 @@ class Game {
           // }
           break;
         case "ArrowDown":
+          this.batPlayer.animateBat("ArrowDown");
           this.batPlayer.moveBatDown();
           const preyDetectDown = this.batPlayer.checkForPrey(this.preyArr);
           if (preyDetectDown) {
@@ -74,6 +94,7 @@ class Game {
           }
           break;
         case "ArrowRight":
+          this.batPlayer.animateBat("ArrowRight");
           this.batPlayer.moveBatRight();
           const preyDetectRight = this.batPlayer.checkForPrey(this.preyArr);
           if (preyDetectRight) {
@@ -84,6 +105,7 @@ class Game {
           }
           break;
         case "ArrowLeft":
+          this.batPlayer.animateBat("ArrowLeft");
           this.batPlayer.moveBatLeft();
           const preyDetectLeft = this.batPlayer.checkForPrey(this.preyArr);
           if (preyDetectLeft) {
@@ -112,6 +134,7 @@ class Game {
       this.preyArr = [];
 
       this.level++;
+      this.batPlayer.reduceEnergy();
       this.start(this.level);
     } else {
       location.href = "../gameover.html";
