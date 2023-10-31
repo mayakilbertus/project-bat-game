@@ -22,6 +22,7 @@ class Prey {
     this.prey.style.bottom = this.positionY + "rem";
     this.prey.style.left = this.positionX + "rem";
     this.prey.setAttribute("id", `prey${counter}`);
+    this.prey.setAttribute("class", `prey`);
     this.prey.setAttribute("src", "./src/moth.png");
     this.board = document.getElementById("board");
     this.board.appendChild(this.prey);

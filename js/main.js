@@ -1,10 +1,6 @@
 const game = new Game();
 
-game.start();
-
-setTimeout(() => {
-  game.end();
-}, 70000);
+game.start(1);
 
 const testBat = document.getElementById("test-bat");
 

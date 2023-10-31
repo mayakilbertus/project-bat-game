@@ -4,7 +4,7 @@ class BatPlayer {
     this.height = 7;
     this.positionX = 0;
     this.positionY = 0;
-    this.energy = 0;
+    this.energy = 80;
     this.batPlayer = null;
 
     this.board = document.getElementById("board");

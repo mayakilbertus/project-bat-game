@@ -4,25 +4,30 @@ class Game {
     this.preyArr = [];
     this.counterPrey = 0;
     this.dateTime = 22;
-    this.level = 0;
+    this.level = 1;
 
     this.preyElement = null;
+    this.board = document.getElementById("board");
   }
 
-  start() {
+  start(level) {
+    const levelCounter = document.getElementById("gameLevel");
+    levelCounter.innerHTML = `Level ${level}`;
     this.detectPlayerMovement();
+
+    //create Prey
     setInterval(() => {
       this.counterPrey++;
       this.preyElement = new Prey();
       this.preyElement.createPrey(this.counterPrey);
       this.preyArr.push(this.preyElement);
-    }, 3000);
+    }, 4000);
 
     setInterval(() => {
       this.preyElement.removePrey(this.preyArr[0].prey.getAttribute("id"));
       this.preyArr.shift();
     }, 7000);
-
+    //Daytime
     const timeElement = document.getElementById("time");
     const timer = setInterval(() => {
       if (this.dateTime == 24) {
@@ -33,6 +38,10 @@ class Game {
         timeElement.innerHTML = `${this.dateTime}:00 h`;
       }
     }, 8000);
+
+    setTimeout(() => {
+      this.end();
+    }, 15000);
   }
 
   detectPlayerMovement() {
@@ -94,10 +103,18 @@ class Game {
   //   this.preyElement.removePrey(preyDetect[0].prey.getAttribute("id"));
   // }
   end() {
+    const preyElementList = document.querySelectorAll(".prey");
+    preyElementList.forEach((prey) => {
+      this.board.removeChild(prey);
+    });
     if (this.batPlayer.showEnergyLevel() >= 80) {
       window.alert("You survived the day!");
+      this.preyArr = [];
+
+      this.level++;
+      this.start(this.level);
     } else {
-      window.alert("You died!");
+      location.href = "../gameover.html";
     }
   }
 }
