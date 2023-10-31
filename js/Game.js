@@ -3,7 +3,8 @@ class Game {
     this.batPlayer = new BatPlayer();
     this.preyArr = [];
     this.counterPrey = 0;
-    this.dateTime = 22;
+    this.dateTimeHour = 22;
+    this.dateTimeMinutes = 0;
     this.level = 1;
 
     this.preyElement = null;
@@ -33,19 +34,25 @@ class Game {
 
     //Daytime
     const timeElement = document.getElementById("time");
-    const timer = setInterval(() => {
-      if (this.dateTime == 24) {
-        this.dateTime = 0;
-        timeElement.innerHTML = `${this.dateTime}:00 h`;
+    setInterval(() => {
+      if (this.dateTimeHour == 24) {
+        this.dateTimeHour = 0;
+        timeElement.innerHTML = `${this.dateTimeHour}:00 h`;
       } else {
-        this.dateTime++;
-        timeElement.innerHTML = `${this.dateTime}:00 h`;
+        this.dateTimeMinutes++;
+        if (this.dateTimeHour === 6) {
+          this.end();
+        }
+        if (this.dateTimeMinutes > 59) {
+          this.dateTimeHour++;
+          this.dateTimeMinutes = 0;
+        }
+        if (this.dateTimeMinutes < 10) {
+          this.dateTimeMinutes = "0" + this.dateTimeMinutes;
+        }
+        timeElement.innerHTML = `${this.dateTimeHour}:${this.dateTimeMinutes} h`;
       }
-    }, 8000);
-
-    setTimeout(() => {
-      this.end();
-    }, 30000);
+    }, 50);
   }
 
   calculatePreyInterval(level) {

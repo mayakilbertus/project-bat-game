@@ -1,7 +1,7 @@
 class BatPlayer {
   constructor() {
-    this.width = 3;
-    this.height = 4;
+    this.width = 2;
+    this.height = 1.5;
     this.positionX = 0;
     this.positionY = 0;
     this.energy = 80;
@@ -81,18 +81,18 @@ class BatPlayer {
   }
 
   animateBat(arrowKey) {
-    let position = 48;
-    let startOfSpriteRow = 0;
+    let position = 58;
+    let startOfSpriteRow = -20;
     if (arrowKey === "ArrowDown") {
-      startOfSpriteRow = 0;
+      startOfSpriteRow = -20;
     } else if (arrowKey === "ArrowUp") {
-      startOfSpriteRow = 64;
+      startOfSpriteRow = 44;
     } else if (arrowKey === "ArrowRight") {
-      startOfSpriteRow = 128;
+      startOfSpriteRow = 108;
     } else if (arrowKey === "ArrowLeft") {
-      startOfSpriteRow = 192;
+      startOfSpriteRow = 172;
     } else {
-      startOfSpriteRow = 0;
+      startOfSpriteRow = -20;
     }
 
     // setInterval(() => {
