@@ -77,7 +77,8 @@ class BatPlayer {
   }
 
   reduceEnergy() {
-    this.energy -= this.energy * 0.8;
+    // this.energy -= this.energy * 0.8;
+    this.energy = 75;
   }
 
   animateBat(arrowKey) {

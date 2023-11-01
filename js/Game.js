@@ -12,9 +12,13 @@ class Game {
     this.preyInterval = 7500;
 
     this.batPlayer.animateBat();
+
+    this.start(1);
   }
 
   start(level) {
+    this.preyArr = [];
+
     const levelCounter = document.getElementById("gameLevel");
     levelCounter.innerHTML = `Level ${level}`;
     this.detectPlayerMovement();
@@ -27,31 +31,47 @@ class Game {
       this.preyArr.push(this.preyElement);
     }, 4000);
 
-    const deletePreyTimer = setInterval(() => {
+    //Remove Prey
+    setInterval(() => {
       this.preyElement.removePrey(this.preyArr[0].prey.getAttribute("id"));
       this.preyArr.shift();
     }, this.calculatePreyInterval(level));
 
     //Daytime
     const timeElement = document.getElementById("time");
+    // setInterval(() => {
+    //   if (this.dateTimeHour === 24) {
+    //     this.dateTimeHour = 0;
+    //     timeElement.innerHTML = `${this.dateTimeHour} :${this.dateTimeMinutes} h`;
+    //   } else {
+    //     this.dateTimeMinutes++;
+    //     if (this.dateTimeHour === 6) {
+    //       this.end();
+    //     }
+    //     if (this.dateTimeMinutes > 59) {
+    //       this.dateTimeHour++;
+    //       this.dateTimeMinutes = 0;
+    //     }
+    //     if (this.dateTimeMinutes < 10) {
+    //       this.dateTimeMinutes = "0" + this.dateTimeMinutes;
+    //     }
+    //     timeElement.innerHTML = `${this.dateTimeHour}:${this.dateTimeMinutes} h`;
+    //   }
+    // }, 50);
+
     setInterval(() => {
-      if (this.dateTimeHour == 24) {
+      this.dateTimeMinutes++;
+      if (this.dateTimeMinutes === 60) {
+        this.dateTimeHour++;
+        this.dateTimeMinutes = 0;
+      } else if (this.dateTimeHour === 24) {
         this.dateTimeHour = 0;
-        timeElement.innerHTML = `${this.dateTimeHour}:00 h`;
-      } else {
-        this.dateTimeMinutes++;
-        if (this.dateTimeHour === 6) {
-          this.end();
-        }
-        if (this.dateTimeMinutes > 59) {
-          this.dateTimeHour++;
-          this.dateTimeMinutes = 0;
-        }
-        if (this.dateTimeMinutes < 10) {
-          this.dateTimeMinutes = "0" + this.dateTimeMinutes;
-        }
-        timeElement.innerHTML = `${this.dateTimeHour}:${this.dateTimeMinutes} h`;
+      } else if (this.dateTimeMinutes < 10) {
+        this.dateTimeMinutes = `0${this.dateTimeMinutes}`;
+      } else if (this.dateTimeHour === 6) {
+        this.end();
       }
+      timeElement.innerHTML = `${this.dateTimeHour}:${this.dateTimeMinutes} h`;
     }, 50);
   }
 
@@ -131,6 +151,7 @@ class Game {
   //   this.preyArr.splice(preyDetect[1], 1);
   //   this.preyElement.removePrey(preyDetect[0].prey.getAttribute("id"));
   // }
+
   end() {
     const preyElementList = document.querySelectorAll(".prey");
     preyElementList.forEach((prey) => {
@@ -138,14 +159,13 @@ class Game {
     });
     if (this.batPlayer.showEnergyLevel() >= 80) {
       // window.alert("You survived the day!");
-      this.preyArr = [];
-
       this.level++;
       this.batPlayer.reduceEnergy();
+      this.dateTimeHour = 22;
+      this.dateTimeMinutes = 0;
       this.start(this.level);
+    } else {
+      location.href = "../gameover.html";
     }
-    // else {
-    //   location.href = "../gameover.html";
-    // }
   }
 }

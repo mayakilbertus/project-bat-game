@@ -35,7 +35,20 @@
 
 ### milestone 1
 
-<p>[] add different levels --> food displays shorter</p>
+<p>[x] add different levels --> food displays shorter</p>
+<p>[x] energy reduces during day time in a certain percentage to start next level with lower energy</p>
+<p>fix bugs</p>
+<ul>
+<li>Time restart at new lvl</li>
+<li>Bugs in Board</li>
+<li>start of the game</li>
+<li>Sound</li>
+<li>error</li>
+
+</ul>
+
+### milestone 2
+
 <p>[] different type of food (adds different energy)</p>
+<p>[] Hurry when 1h left</p>
 <p>[] add other bats or something to loose energy</p>
-<p>[] energy reduces during day time in a certain percentage to start next level with lower energy</p>
