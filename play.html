@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600&family=Barlow:wght@400;500;600;700&family=Inconsolata:wght@400;600;700&family=Inter:wght@400;500;700&family=Pixelify+Sans:wght@400;500;600;700&family=Rubik:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- second font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600&family=Barlow:wght@400;500;600;700&family=Inconsolata:wght@400;600;700&family=Inter:wght@400;500;700&family=Pixelify+Sans:wght@400;500;600;700&family=Press+Start+2P&family=Rubik:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles/style.css" />
+    <title>Bat Game</title>
+  </head>
+  <body>
+    <audio id="backgroundMusic" hidden autoplay>
+      <source src="./src/background-music.mp3" type="audio/ogg" />
+    </audio>
+    <h1>Bat Game</h1>
+    <div class="game-area">
+      <p id="gameLevel" class="gameInfo">Level</p>
+      <p id="energyLevel" class="gameInfo">Your energy level: 0%</p>
+      <p id="time" class="gameInfo">22:00 h</p>
+
+      <div class="instructions">
+        <p>Bat control:</p>
+        <img id="arrowKeys" src="./src/arrowKeys.png" />
+      </div>
+
+      <div id="board">
+        <img id="board-background" src="./src/grass.png" />
+        <p id="batPlayer" />
+      </div>
+    </div>
+    <script src="./js/BatPlayer.js"></script>
+    <script src="./js/Prey.js"></script>
+    <script src="./js/Game.js"></script>
+    <script src="./js/main.js"></script>
+  </body>
+</html>

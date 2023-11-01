@@ -6,42 +6,30 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600&family=Barlow:wght@400;500;600;700&family=Inconsolata:wght@400;600;700&family=Inter:wght@400;500;700&family=Pixelify+Sans:wght@400;500;600;700&family=Rubik:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <!-- second font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
       href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600&family=Barlow:wght@400;500;600;700&family=Inconsolata:wght@400;600;700&family=Inter:wght@400;500;700&family=Pixelify+Sans:wght@400;500;600;700&family=Press+Start+2P&family=Rubik:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./styles/style.css" />
+    <link rel="stylesheet" href="./styles/instructions.css" />
     <title>Bat Game</title>
   </head>
   <body>
-    <audio id="backgroundMusic" hidden autoplay>
-      <source src="./src/background-music.mp3" type="audio/ogg" />
-    </audio>
-    <h1>Bat Game</h1>
-    <div class="game-area">
-      <p id="gameLevel" class="gameInfo">Level</p>
-      <p id="energyLevel" class="gameInfo">Your energy level: 0%</p>
-      <p id="time" class="gameInfo">22:00 h</p>
-
-      <div class="instructions">
-        <p>Bat control:</p>
-        <img id="arrowKeys" src="./src/arrowKeys.png" />
+    <h1>Instructions</h1>
+    <div id="instruction-board">
+      <p>
+        Goal: Reach more than 80% energy each night to survive the day and get
+        to the next level.
+      </p>
+      <p>Move the bat:</p>
+      <img id="arrowKeys" src="./src/arrowKeys.png" />
+      <div>
+        <p>Eat the Moth to get +5% Energy</p>
+        <img id="moth-img" src="./src/moth.png" />
       </div>
 
-      <div id="board">
-        <img id="board-background" src="./src/grass.png" />
-        <p id="batPlayer" />
-      </div>
+      <p>As higher level you reach as more tricky it will get.</p>
+      <p>Have fun!</p>
+      <a href="/play.html" id="start-btn">Start</a>
     </div>
-    <script src="./js/BatPlayer.js"></script>
-    <script src="./js/Prey.js"></script>
-    <script src="./js/Game.js"></script>
-    <script src="./js/main.js"></script>
   </body>
 </html>
