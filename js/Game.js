@@ -10,7 +10,9 @@ class Game {
     this.preyElement = null;
     this.board = document.getElementById("board");
     this.preyInterval = 7500;
-    this.intervalID = null;
+
+    this.createPreyIntervalID = null;
+    this.removePreyIntervalID = null;
 
     this.batPlayer.animateBat();
 
@@ -25,7 +27,7 @@ class Game {
     this.detectPlayerMovement();
 
     //create Prey
-    this.intervalId = setInterval(() => {
+    this.createPreyIntervalId = setInterval(() => {
       this.counterPrey++;
       this.preyElement = new Prey();
       this.preyElement.createPrey(this.counterPrey);
@@ -34,7 +36,7 @@ class Game {
     }, 4000);
 
     //Remove Prey
-    setInterval(() => {
+    this.removePreyIntervalID = setInterval(() => {
       this.preyElement.removePrey(this.preyArr[0].prey.getAttribute("id"));
       this.preyArr.shift();
     }, this.calculatePreyInterval(level));
@@ -136,7 +138,8 @@ class Game {
       this.batPlayer.reduceEnergy();
       this.dateTimeHour = 22;
       this.dateTimeMinutes = 0;
-      clearInterval(this.intervalId);
+      clearInterval(this.createPreyIntervalId);
+      clearInterval(this.removePreyIntervalID);
       this.start(this.level);
     }
 

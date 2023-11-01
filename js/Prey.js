@@ -6,11 +6,9 @@ class Prey {
 
     this.width = 1.5;
     this.height = 1.5;
-    this.positionX = Math.floor(
-      Math.random() * (this.boardWidth - this.width + 1)
-    );
+    this.positionX = Math.floor(Math.random() * (this.boardWidth - this.width));
     this.positionY = Math.floor(
-      Math.random() * (this.boardHeight - this.height + 1)
+      Math.random() * (this.boardHeight - this.height)
     );
   }
 

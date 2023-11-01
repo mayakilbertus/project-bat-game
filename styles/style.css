@@ -76,7 +76,9 @@ audio {
   justify-self: center;
 }
 
-#game-area div {
+.instructions {
+  color: grey;
+  font-size: 0.8rem;
   display: flex;
   flex-direction: column;
   align-items: center;
