@@ -10,6 +10,7 @@ class Game {
     this.preyElement = null;
     this.board = document.getElementById("board");
     this.preyInterval = 7500;
+    this.intervalID = null;
 
     this.batPlayer.animateBat();
 
@@ -24,11 +25,12 @@ class Game {
     this.detectPlayerMovement();
 
     //create Prey
-    setInterval(() => {
+    this.intervalId = setInterval(() => {
       this.counterPrey++;
       this.preyElement = new Prey();
       this.preyElement.createPrey(this.counterPrey);
       this.preyArr.push(this.preyElement);
+      console.log("test");
     }, 4000);
 
     //Remove Prey
@@ -57,7 +59,7 @@ class Game {
   }
 
   calculatePreyInterval(level) {
-    const basisReduction = 800;
+    const basisReduction = 200;
     const levelReduction = 2 * level;
 
     const totalReduction = basisReduction * (1 / levelReduction);
@@ -144,9 +146,10 @@ class Game {
       this.batPlayer.reduceEnergy();
       this.dateTimeHour = 22;
       this.dateTimeMinutes = 0;
+      clearInterval(this.intervalId);
       this.start(this.level);
     } else {
-      location.href = "../gameover.html";
+      location.href = "./gameover.html";
     }
   }
 }

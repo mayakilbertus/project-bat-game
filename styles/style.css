@@ -59,6 +59,7 @@ audio {
   width: 48px; */
 
   background: url("../src/bat-flappy.png") 0px 0px;
+  background-size: 12rem;
 }
 
 #test-bat {

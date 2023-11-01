@@ -1,7 +1,9 @@
+const biteSound = new Audio("./src/bite-sound.mp3");
+
 class BatPlayer {
   constructor() {
-    this.width = 2;
-    this.height = 1.5;
+    this.width = 2.5;
+    this.height = 2;
     this.positionX = 0;
     this.positionY = 0;
     this.energy = 80;
@@ -51,7 +53,6 @@ class BatPlayer {
   }
 
   checkForPrey(preyArr) {
-    const biteSound = new Audio("./src/bite-sound.mp3");
     const energyLevel = document.getElementById("energyLevel");
     for (let i = 0; i < preyArr.length; i++) {
       if (
@@ -82,18 +83,18 @@ class BatPlayer {
   }
 
   animateBat(arrowKey) {
-    let position = 58;
-    let startOfSpriteRow = -20;
+    let position = 73;
+    let startOfSpriteRow = -23;
     if (arrowKey === "ArrowDown") {
-      startOfSpriteRow = -20;
+      startOfSpriteRow = -23;
     } else if (arrowKey === "ArrowUp") {
-      startOfSpriteRow = 44;
+      startOfSpriteRow = 52;
     } else if (arrowKey === "ArrowRight") {
-      startOfSpriteRow = 108;
+      startOfSpriteRow = 140;
     } else if (arrowKey === "ArrowLeft") {
-      startOfSpriteRow = 172;
+      startOfSpriteRow = 230;
     } else {
-      startOfSpriteRow = -20;
+      startOfSpriteRow = -23;
     }
 
     // setInterval(() => {
