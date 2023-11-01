@@ -9,18 +9,28 @@
       href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600&family=Barlow:wght@400;500;600;700&family=Inconsolata:wght@400;600;700&family=Inter:wght@400;500;700&family=Pixelify+Sans:wght@400;500;600;700&family=Rubik:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
+    <!-- second font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600&family=Barlow:wght@400;500;600;700&family=Inconsolata:wght@400;600;700&family=Inter:wght@400;500;700&family=Pixelify+Sans:wght@400;500;600;700&family=Press+Start+2P&family=Rubik:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="./styles/style.css" />
     <title>Document</title>
   </head>
   <body>
+    <audio controls autoplay loop>
+      <source src="./src/background-music.mp3" type="audio/ogg" />
+    </audio>
     <h1>Bat Game</h1>
     <div class="gameArea">
-      <div>
+      <div id="gameInfo">
         <p id="gameLevel">Level</p>
         <p id="energyLevel">Your energy level: 0%</p>
         <p id="time">22:00 h</p>
         <!-- <img src="./src/bat-flappy.png" /> -->
-        <p id="test-bat"></p>
+        <!-- <p id="test-bat"></p> -->
       </div>
       <div id="board">
         <img id="board-background" src="./src/grass.png" />

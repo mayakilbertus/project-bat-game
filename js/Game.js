@@ -137,14 +137,15 @@ class Game {
       this.board.removeChild(prey);
     });
     if (this.batPlayer.showEnergyLevel() >= 80) {
-      window.alert("You survived the day!");
+      // window.alert("You survived the day!");
       this.preyArr = [];
 
       this.level++;
       this.batPlayer.reduceEnergy();
       this.start(this.level);
-    } else {
-      location.href = "../gameover.html";
     }
+    // else {
+    //   location.href = "../gameover.html";
+    // }
   }
 }

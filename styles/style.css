@@ -5,29 +5,47 @@
 }
 body {
   overflow: hidden;
+  /* background: url("/src/night-background.jpg"); */
+  background: url("/src/forest-background.png");
+  background-size: 100%;
 }
 
 h1 {
-  font-family: Pixelify Sans;
-  font-size: 5rem;
+  font-family: "Press Start 2P";
+  font-size: 3rem;
   text-align: center;
+  color: grey;
+  margin-top: 2rem;
   /* margin: 0 auto; */
 }
 
 .gameArea {
-  display: flex;
+  /* display: flex;
+  justify-content: center; */
 }
 
 #board {
   position: relative;
   width: 40rem;
   height: 20rem;
-  margin: 10vw auto;
+  margin: 5vw auto;
 }
 
 #board-background {
   width: 40rem;
   height: 20rem;
+  /* border-radius: 10px; */
+  border: 2px solid rgba(22, 24, 38, 255);
+  box-shadow: -1px 0px 8px 8px rgba(211, 211, 211, 0.466);
+  filter: brightness(60%);
+}
+
+#gameInfo {
+  font-family: "Press Start 2P";
+  display: flex;
+  justify-content: space-between;
+  color: grey;
+  margin: 2rem 8rem;
 }
 
 #batPlayer {
