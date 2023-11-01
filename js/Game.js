@@ -13,6 +13,7 @@ class Game {
 
     this.createPreyIntervalID = null;
     this.removePreyIntervalID = null;
+    this.dateTimeIntervalID = null;
 
     this.batPlayer.animateBat();
 
@@ -44,7 +45,7 @@ class Game {
     //Daytime
     const timeElement = document.getElementById("time");
 
-    setInterval(() => {
+    this.dateTimeIntervalID = setInterval(() => {
       this.dateTimeMinutes++;
       if (this.dateTimeMinutes === 60) {
         this.dateTimeHour++;
@@ -140,6 +141,7 @@ class Game {
       this.dateTimeMinutes = 0;
       clearInterval(this.createPreyIntervalId);
       clearInterval(this.removePreyIntervalID);
+      clearInterval(this.dateTimeIntervalID);
       this.start(this.level);
     }
 
