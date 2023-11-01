@@ -6,7 +6,7 @@
 body {
   overflow: hidden;
   /* background: url("/src/night-background.jpg"); */
-  background: url("/src/forest-background.png");
+  background: url("../src/forest-background.png");
   background-size: 100%;
 }
 
@@ -54,12 +54,12 @@ h1 {
   /* height: 64px;
   width: 48px; */
 
-  background: url("/src/bat-flappy.png") 0px 0px;
+  background: url("../src/bat-flappy.png") 0px 0px;
 }
 
 #test-bat {
   height: 64px;
   width: 48px;
 
-  background: url("/src/bat-flappy.png") 0px 0px;
+  background: url("../src/bat-flappy.png") 0px 0px;
 }
