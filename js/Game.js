@@ -39,25 +39,6 @@ class Game {
 
     //Daytime
     const timeElement = document.getElementById("time");
-    // setInterval(() => {
-    //   if (this.dateTimeHour === 24) {
-    //     this.dateTimeHour = 0;
-    //     timeElement.innerHTML = `${this.dateTimeHour} :${this.dateTimeMinutes} h`;
-    //   } else {
-    //     this.dateTimeMinutes++;
-    //     if (this.dateTimeHour === 6) {
-    //       this.end();
-    //     }
-    //     if (this.dateTimeMinutes > 59) {
-    //       this.dateTimeHour++;
-    //       this.dateTimeMinutes = 0;
-    //     }
-    //     if (this.dateTimeMinutes < 10) {
-    //       this.dateTimeMinutes = "0" + this.dateTimeMinutes;
-    //     }
-    //     timeElement.innerHTML = `${this.dateTimeHour}:${this.dateTimeMinutes} h`;
-    //   }
-    // }, 50);
 
     setInterval(() => {
       this.dateTimeMinutes++;

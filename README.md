@@ -39,11 +39,11 @@
 <p>[x] energy reduces during day time in a certain percentage to start next level with lower energy</p>
 <p>fix bugs</p>
 <ul>
-<li>Time restart at new lvl</li>
-<li>Bugs in Board</li>
-<li>start of the game</li>
-<li>Sound</li>
-<li>error</li>
+<li>[x] Time restart at new lvl</li>
+<li>[] Bugs in Board</li>
+<li>[] start of the game</li>
+<li>[] Sound</li>
+<li>[] error</li>
 
 </ul>
 
