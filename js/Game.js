@@ -80,17 +80,12 @@ class Game {
           this.batPlayer.animateBat("ArrowUp");
           this.batPlayer.moveBatUp();
           const preyDetectUp = this.batPlayer.checkForPrey(this.preyArr);
-          // this.preyDetectUp = this.batPlayer.checkForPrey(this.preyArr);
           if (preyDetectUp) {
             this.preyArr.splice(preyDetectUp[1], 1);
             this.preyElement.removePrey(
               preyDetectUp[0].prey.getAttribute("id")
             );
           }
-
-          // if (this.preyDetectUp) {
-          //   this.updatePrey(this.PreyDetectUp);
-          // }
           break;
         case "ArrowDown":
           this.batPlayer.animateBat("ArrowDown");
@@ -130,10 +125,6 @@ class Game {
       }
     });
   }
-  // updatePrey(preyDetect) {
-  //   this.preyArr.splice(preyDetect[1], 1);
-  //   this.preyElement.removePrey(preyDetect[0].prey.getAttribute("id"));
-  // }
 
   end() {
     const preyElementList = document.querySelectorAll(".prey");
@@ -141,15 +132,16 @@ class Game {
       this.board.removeChild(prey);
     });
     if (this.batPlayer.showEnergyLevel() >= 80) {
-      // window.alert("You survived the day!");
       this.level++;
       this.batPlayer.reduceEnergy();
       this.dateTimeHour = 22;
       this.dateTimeMinutes = 0;
       clearInterval(this.intervalId);
       this.start(this.level);
-    } else {
-      location.href = "./gameover.html";
     }
+
+    // else {
+    //   location.href = "./gameover.html";
+    // }
   }
 }

@@ -1,9 +1,9 @@
 const game = new Game();
 
 const backgroundMusic = document.getElementById("backgroundMusic");
-document.addEventListener("keydown", () => {
-  backgroundMusic.play();
-});
+// document.addEventListener("keydown", () => {
+//   backgroundMusic.play();
+// });
 
 /*-------------Test Animation Bat -----------------------
 const testBat = document.getElementById("test-bat");

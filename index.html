@@ -17,21 +17,23 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./styles/style.css" />
-    <title>Document</title>
+    <title>Bat Game</title>
   </head>
   <body>
     <audio id="backgroundMusic" hidden autoplay>
       <source src="./src/background-music.mp3" type="audio/ogg" />
     </audio>
     <h1>Bat Game</h1>
-    <div class="gameArea">
-      <div id="gameInfo">
-        <p id="gameLevel">Level</p>
-        <p id="energyLevel">Your energy level: 0%</p>
-        <p id="time">22:00 h</p>
-        <!-- <img src="./src/bat-flappy.png" /> -->
-        <!-- <p id="test-bat"></p> -->
+    <div class="game-area">
+      <p id="gameLevel" class="gameInfo">Level</p>
+      <p id="energyLevel" class="gameInfo">Your energy level: 0%</p>
+      <p id="time" class="gameInfo">22:00 h</p>
+
+      <div>
+        <p>Bat control:</p>
+        <img id="arrowKeys" src="./src/arrowKeys.png" />
       </div>
+
       <div id="board">
         <img id="board-background" src="./src/grass.png" />
         <p id="batPlayer" />

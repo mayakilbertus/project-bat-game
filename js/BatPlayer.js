@@ -61,7 +61,6 @@ class BatPlayer {
         this.positionY < preyArr[i].positionY + preyArr[i].height &&
         this.positionY + this.height > preyArr[i].positionY
       ) {
-        // const preyID =
         biteSound.play();
         if (this.energy <= 100) {
           this.energy += 5;
