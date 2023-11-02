@@ -7,7 +7,7 @@ class BatPlayer {
     this.height = 2;
     this.positionX = 0;
     this.positionY = 0;
-    this.energy = 0;
+    this.energy = 20;
     this.batPlayer = null;
 
     this.board = document.getElementById("board");
@@ -64,7 +64,7 @@ class BatPlayer {
       ) {
         biteSound.play();
         if (this.energy <= 90) {
-          this.energy += 10;
+          this.energy += 5;
         } else {
           this.energy = 100;
         }

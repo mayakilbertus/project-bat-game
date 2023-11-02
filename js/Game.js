@@ -34,7 +34,7 @@ class Game {
     //create Prey
     this.createPreyIntervalId = setInterval(() => {
       this.addPrey();
-    }, 3000);
+    }, 2000);
 
     //Remove Prey
     this.removePreyIntervalID = setInterval(() => {
@@ -90,7 +90,7 @@ class Game {
 
   calculatePreyInterval(level) {
     const basisReduction = 200;
-    const levelReduction = 400 * level;
+    const levelReduction = 600 * level;
 
     const totalReduction = basisReduction * (1 / levelReduction);
     if (totalReduction < 2000) {
