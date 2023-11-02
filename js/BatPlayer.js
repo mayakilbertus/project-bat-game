@@ -7,7 +7,7 @@ class BatPlayer {
     this.height = 2;
     this.positionX = 0;
     this.positionY = 0;
-    this.energy = 1;
+    this.energy = 0;
     this.batPlayer = null;
 
     this.board = document.getElementById("board");
@@ -26,7 +26,7 @@ class BatPlayer {
   }
 
   moveBatUp() {
-    if (this.positionY < this.boardHeight - this.height * 1.5) {
+    if (this.positionY < this.boardHeight - this.height) {
       this.positionY = this.positionY + 1;
       this.batPlayer.style.bottom = this.positionY + "rem";
     }
@@ -37,7 +37,6 @@ class BatPlayer {
       this.positionY = this.positionY - 1;
       this.batPlayer.style.bottom = this.positionY + "rem";
     }
-    console.log(this.positionY);
   }
 
   moveBatLeft() {

@@ -34,7 +34,7 @@ class Game {
     //create Prey
     this.createPreyIntervalId = setInterval(() => {
       this.addPrey();
-    }, 2000);
+    }, 3000);
 
     //Remove Prey
     this.removePreyIntervalID = setInterval(() => {
@@ -42,6 +42,13 @@ class Game {
         this.preyArr[0].prey.getAttribute("id")
       );
       this.preyArr.shift();
+
+      if (this.gadgetArr.length > 0) {
+        this.gadgetElement.removeGadgetElement(
+          this.gadgetArr[0].gadget.getAttribute("id")
+        );
+        this.gadgetArr.shift();
+      }
     }, this.calculatePreyInterval(level));
 
     //Daytime
@@ -109,69 +116,11 @@ class Game {
       this.pressedKeys[event.code] = false;
       this.updatePlayerPosition();
     });
-
-    //   const randomIterations = Math.floor(Math.random() * 3) + 1;
-
-    //   switch (event.code) {
-    //     case "ArrowUp":
-    //       this.batPlayer.animateBat("ArrowUp");
-    //       this.batPlayer.moveBatUp();
-    //       const detectedPreyUp = this.batPlayer.checkForPrey(this.preyArr);
-    //       if (detectedPreyUp) {
-    //         this.removePrey(detectedPreyUp);
-    //       } else if (this.batPlayer.checkForGadget(this.gadgetArr)) {
-    //         this.removeGadget(this.batPlayer.checkForGadget(this.gadgetArr));
-    //         for (let i = 0; i < randomIterations; i++) {
-    //           this.addPrey();
-    //         }
-    //       }
-    //       break;
-    //     case "ArrowDown":
-    //       this.batPlayer.animateBat("ArrowDown");
-    //       this.batPlayer.moveBatDown();
-    //       const detectedPreyDown = this.batPlayer.checkForPrey(this.preyArr);
-    //       if (detectedPreyDown) {
-    //         this.removePrey(detectedPreyDown);
-    //       } else if (this.batPlayer.checkForGadget(this.gadgetArr)) {
-    //         this.removeGadget(this.batPlayer.checkForGadget(this.gadgetArr));
-    //         for (let i = 0; i < randomIterations; i++) {
-    //           this.addPrey();
-    //         }
-    //       }
-    //       break;
-    //     case "ArrowRight":
-    //       this.batPlayer.animateBat("ArrowRight");
-    //       this.batPlayer.moveBatRight();
-    //       const detectedPreyRight = this.batPlayer.checkForPrey(this.preyArr);
-    //       if (detectedPreyRight) {
-    //         this.removePrey(detectedPreyRight);
-    //       } else if (this.batPlayer.checkForGadget(this.gadgetArr)) {
-    //         this.removeGadget(this.batPlayer.checkForGadget(this.gadgetArr));
-    //         for (let i = 0; i < randomIterations; i++) {
-    //           this.addPrey();
-    //         }
-    //       }
-    //       break;
-    //     case "ArrowLeft":
-    //       this.batPlayer.animateBat("ArrowLeft");
-    //       this.batPlayer.moveBatLeft();
-    //       const detectedPreyLeft = this.batPlayer.checkForPrey(this.preyArr);
-    //       if (detectedPreyLeft) {
-    //         this.removePrey(detectedPreyLeft);
-    //       } else if (this.batPlayer.checkForGadget(this.gadgetArr)) {
-    //         this.removeGadget(this.batPlayer.checkForGadget(this.gadgetArr));
-    //         for (let i = 0; i < randomIterations; i++) {
-    //           this.addPrey();
-    //         }
-    //       }
-    //       break;
-    //     default:
-    //       break;
-    //   }
-    // });
   }
 
   updatePlayerPosition() {
+    const randomIterations = Math.floor(Math.random() * 3) + 1;
+
     if (this.pressedKeys.ArrowLeft === true) {
       this.batPlayer.moveBatLeft();
       this.batPlayer.animateBat("ArrowLeft");
@@ -217,6 +166,7 @@ class Game {
     if (this.pressedKeys.ArrowDown === true) {
       this.batPlayer.moveBatDown();
       this.batPlayer.animateBat("ArrowDown");
+      const detectedPreyDown = this.batPlayer.checkForPrey(this.preyArr);
       if (detectedPreyDown) {
         this.removePrey(detectedPreyDown);
       } else if (this.batPlayer.checkForGadget(this.gadgetArr)) {
