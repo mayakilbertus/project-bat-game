@@ -77,7 +77,7 @@ class Game {
         this.gadgetElement = new Gadget();
         this.gadgetElement.createGadget(this.counterGadget);
         this.gadgetArr.push(this.gadgetElement);
-      }, 10000);
+      }, 9000);
     }
   }
 
