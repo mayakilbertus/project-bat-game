@@ -90,7 +90,7 @@ class Game {
 
   calculatePreyInterval(level) {
     const basisReduction = 200;
-    const levelReduction = 200 * level;
+    const levelReduction = 400 * level;
 
     const totalReduction = basisReduction * (1 / levelReduction);
     if (totalReduction < 2000) {
@@ -119,7 +119,7 @@ class Game {
   }
 
   updatePlayerPosition() {
-    const randomIterations = Math.floor(Math.random() * 3) + 1;
+    const randomIterations = Math.floor(Math.random() * 2) + 1;
 
     if (this.pressedKeys.ArrowLeft === true) {
       this.batPlayer.moveBatLeft();
