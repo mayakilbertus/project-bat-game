@@ -96,68 +96,138 @@ class Game {
   }
 
   detectPlayerMovement() {
+    this.pressedKeys = {};
+
     document.addEventListener("keydown", (event) => {
       event.preventDefault;
-      const randomIterations = Math.floor(Math.random() * 3) + 1;
 
-      switch (event.code) {
-        case "ArrowUp":
-          this.batPlayer.animateBat("ArrowUp");
-          this.batPlayer.moveBatUp();
-          const detectedPreyUp = this.batPlayer.checkForPrey(this.preyArr);
-          if (detectedPreyUp) {
-            this.removePrey(detectedPreyUp);
-          } else if (this.batPlayer.checkForGadget(this.gadgetArr)) {
-            this.removeGadget(this.batPlayer.checkForGadget(this.gadgetArr));
-            for (let i = 0; i < randomIterations; i++) {
-              this.addPrey();
-            }
-          }
-          break;
-        case "ArrowDown":
-          this.batPlayer.animateBat("ArrowDown");
-          this.batPlayer.moveBatDown();
-          const detectedPreyDown = this.batPlayer.checkForPrey(this.preyArr);
-          if (detectedPreyDown) {
-            this.removePrey(detectedPreyDown);
-          } else if (this.batPlayer.checkForGadget(this.gadgetArr)) {
-            this.removeGadget(this.batPlayer.checkForGadget(this.gadgetArr));
-            for (let i = 0; i < randomIterations; i++) {
-              this.addPrey();
-            }
-          }
-          break;
-        case "ArrowRight":
-          this.batPlayer.animateBat("ArrowRight");
-          this.batPlayer.moveBatRight();
-          const detectedPreyRight = this.batPlayer.checkForPrey(this.preyArr);
-          if (detectedPreyRight) {
-            this.removePrey(detectedPreyRight);
-          } else if (this.batPlayer.checkForGadget(this.gadgetArr)) {
-            this.removeGadget(this.batPlayer.checkForGadget(this.gadgetArr));
-            for (let i = 0; i < randomIterations; i++) {
-              this.addPrey();
-            }
-          }
-          break;
-        case "ArrowLeft":
-          this.batPlayer.animateBat("ArrowLeft");
-          this.batPlayer.moveBatLeft();
-          const detectedPreyLeft = this.batPlayer.checkForPrey(this.preyArr);
-          if (detectedPreyLeft) {
-            this.removePrey(detectedPreyLeft);
-          } else if (this.batPlayer.checkForGadget(this.gadgetArr)) {
-            this.removeGadget(this.batPlayer.checkForGadget(this.gadgetArr));
-            for (let i = 0; i < randomIterations; i++) {
-              this.addPrey();
-            }
-          }
-          break;
-        default:
-          break;
-      }
+      this.pressedKeys[event.code] = true;
+      this.updatePlayerPosition();
     });
+
+    document.addEventListener("keyup", (event) => {
+      this.pressedKeys[event.code] = false;
+      this.updatePlayerPosition();
+    });
+
+    //   const randomIterations = Math.floor(Math.random() * 3) + 1;
+
+    //   switch (event.code) {
+    //     case "ArrowUp":
+    //       this.batPlayer.animateBat("ArrowUp");
+    //       this.batPlayer.moveBatUp();
+    //       const detectedPreyUp = this.batPlayer.checkForPrey(this.preyArr);
+    //       if (detectedPreyUp) {
+    //         this.removePrey(detectedPreyUp);
+    //       } else if (this.batPlayer.checkForGadget(this.gadgetArr)) {
+    //         this.removeGadget(this.batPlayer.checkForGadget(this.gadgetArr));
+    //         for (let i = 0; i < randomIterations; i++) {
+    //           this.addPrey();
+    //         }
+    //       }
+    //       break;
+    //     case "ArrowDown":
+    //       this.batPlayer.animateBat("ArrowDown");
+    //       this.batPlayer.moveBatDown();
+    //       const detectedPreyDown = this.batPlayer.checkForPrey(this.preyArr);
+    //       if (detectedPreyDown) {
+    //         this.removePrey(detectedPreyDown);
+    //       } else if (this.batPlayer.checkForGadget(this.gadgetArr)) {
+    //         this.removeGadget(this.batPlayer.checkForGadget(this.gadgetArr));
+    //         for (let i = 0; i < randomIterations; i++) {
+    //           this.addPrey();
+    //         }
+    //       }
+    //       break;
+    //     case "ArrowRight":
+    //       this.batPlayer.animateBat("ArrowRight");
+    //       this.batPlayer.moveBatRight();
+    //       const detectedPreyRight = this.batPlayer.checkForPrey(this.preyArr);
+    //       if (detectedPreyRight) {
+    //         this.removePrey(detectedPreyRight);
+    //       } else if (this.batPlayer.checkForGadget(this.gadgetArr)) {
+    //         this.removeGadget(this.batPlayer.checkForGadget(this.gadgetArr));
+    //         for (let i = 0; i < randomIterations; i++) {
+    //           this.addPrey();
+    //         }
+    //       }
+    //       break;
+    //     case "ArrowLeft":
+    //       this.batPlayer.animateBat("ArrowLeft");
+    //       this.batPlayer.moveBatLeft();
+    //       const detectedPreyLeft = this.batPlayer.checkForPrey(this.preyArr);
+    //       if (detectedPreyLeft) {
+    //         this.removePrey(detectedPreyLeft);
+    //       } else if (this.batPlayer.checkForGadget(this.gadgetArr)) {
+    //         this.removeGadget(this.batPlayer.checkForGadget(this.gadgetArr));
+    //         for (let i = 0; i < randomIterations; i++) {
+    //           this.addPrey();
+    //         }
+    //       }
+    //       break;
+    //     default:
+    //       break;
+    //   }
+    // });
   }
+
+  updatePlayerPosition() {
+    if (this.pressedKeys.ArrowLeft === true) {
+      this.batPlayer.moveBatLeft();
+      this.batPlayer.animateBat("ArrowLeft");
+      const detectedPreyLeft = this.batPlayer.checkForPrey(this.preyArr);
+      if (detectedPreyLeft) {
+        this.removePrey(detectedPreyLeft);
+      } else if (this.batPlayer.checkForGadget(this.gadgetArr)) {
+        this.removeGadget(this.batPlayer.checkForGadget(this.gadgetArr));
+        for (let i = 0; i < randomIterations; i++) {
+          this.addPrey();
+        }
+      }
+    }
+
+    if (this.pressedKeys.ArrowRight === true) {
+      this.batPlayer.moveBatRight();
+      this.batPlayer.animateBat("ArrowRight");
+      const detectedPreyRight = this.batPlayer.checkForPrey(this.preyArr);
+      if (detectedPreyRight) {
+        this.removePrey(detectedPreyRight);
+      } else if (this.batPlayer.checkForGadget(this.gadgetArr)) {
+        this.removeGadget(this.batPlayer.checkForGadget(this.gadgetArr));
+        for (let i = 0; i < randomIterations; i++) {
+          this.addPrey();
+        }
+      }
+    }
+
+    if (this.pressedKeys.ArrowUp === true) {
+      this.batPlayer.moveBatUp();
+      this.batPlayer.animateBat("ArrowUp");
+      const detectedPreyUp = this.batPlayer.checkForPrey(this.preyArr);
+      if (detectedPreyUp) {
+        this.removePrey(detectedPreyUp);
+      } else if (this.batPlayer.checkForGadget(this.gadgetArr)) {
+        this.removeGadget(this.batPlayer.checkForGadget(this.gadgetArr));
+        for (let i = 0; i < randomIterations; i++) {
+          this.addPrey();
+        }
+      }
+    }
+
+    if (this.pressedKeys.ArrowDown === true) {
+      this.batPlayer.moveBatDown();
+      this.batPlayer.animateBat("ArrowDown");
+      if (detectedPreyDown) {
+        this.removePrey(detectedPreyDown);
+      } else if (this.batPlayer.checkForGadget(this.gadgetArr)) {
+        this.removeGadget(this.batPlayer.checkForGadget(this.gadgetArr));
+        for (let i = 0; i < randomIterations; i++) {
+          this.addPrey();
+        }
+      }
+    }
+  }
+
   removePrey(detectedPreyArr) {
     this.preyArr.splice(detectedPreyArr[1], 1);
     this.preyElement.removePreyElement(
