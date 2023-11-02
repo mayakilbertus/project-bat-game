@@ -90,7 +90,7 @@ class Game {
 
   calculatePreyInterval(level) {
     const basisReduction = 200;
-    const levelReduction = 2 * level;
+    const levelReduction = 100 * level;
 
     const totalReduction = basisReduction * (1 / levelReduction);
     if (totalReduction < 2000) {
