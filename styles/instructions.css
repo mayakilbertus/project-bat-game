@@ -51,6 +51,7 @@ body {
 
 #arrowKeys {
   object-position: 20% 20%;
+  margin-top: 0;
 }
 
 .paragraph {

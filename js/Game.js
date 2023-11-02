@@ -57,8 +57,10 @@ class Game {
       } else if (this.dateTimeHour === 6) {
         this.end();
       }
-      timeElement.innerHTML = `${this.dateTimeHour}:${this.dateTimeMinutes} h`;
-    }, 50);
+      timeElement.innerHTML = `${this.dateTimeHour}:${Math.round(
+        this.dateTimeMinutes
+      )} h`;
+    }, 70);
   }
 
   calculatePreyInterval(level) {
@@ -143,10 +145,8 @@ class Game {
       clearInterval(this.removePreyIntervalID);
       clearInterval(this.dateTimeIntervalID);
       this.start(this.level);
+    } else {
+      location.href = "./gameover.html";
     }
-
-    // else {
-    //   location.href = "./gameover.html";
-    // }
   }
 }

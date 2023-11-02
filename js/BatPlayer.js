@@ -6,7 +6,7 @@ class BatPlayer {
     this.height = 2;
     this.positionX = 0;
     this.positionY = 0;
-    this.energy = 80;
+    this.energy = 20;
     this.batPlayer = null;
 
     this.board = document.getElementById("board");
@@ -26,28 +26,28 @@ class BatPlayer {
 
   moveBatUp() {
     if (this.positionY < this.boardHeight - this.height) {
-      this.positionY = this.positionY + 0.6;
+      this.positionY = this.positionY + 0.8;
       this.batPlayer.style.bottom = this.positionY + "rem";
     }
   }
 
   moveBatDown() {
     if (this.positionY > 0) {
-      this.positionY = this.positionY - 0.6;
+      this.positionY = this.positionY - 0.8;
       this.batPlayer.style.bottom = this.positionY + "rem";
     }
   }
 
   moveBatLeft() {
     if (this.positionX > 0) {
-      this.positionX = this.positionX - 0.6;
+      this.positionX = this.positionX - 0.8;
       this.batPlayer.style.left = this.positionX + "rem";
     }
   }
 
   moveBatRight() {
     if (this.positionX < this.boardWidth - this.width) {
-      this.positionX = this.positionX + 0.6;
+      this.positionX = this.positionX + 0.8;
       this.batPlayer.style.left = this.positionX + "rem";
     }
   }
@@ -63,7 +63,7 @@ class BatPlayer {
       ) {
         biteSound.play();
         if (this.energy <= 100) {
-          this.energy += 5;
+          this.energy += 10;
         }
         return [preyArr[i], i];
       }
@@ -77,8 +77,7 @@ class BatPlayer {
   }
 
   reduceEnergy() {
-    // this.energy -= this.energy * 0.8;
-    this.energy = 75;
+    this.energy -= this.energy * 0.8;
   }
 
   animateBat(arrowKey) {
