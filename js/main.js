@@ -1,4 +1,5 @@
 const game = new Game();
+game.start(1);
 
 const backgroundMusic = document.getElementById("backgroundMusic");
 // document.addEventListener("keydown", () => {

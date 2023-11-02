@@ -1,3 +1,5 @@
+const bellSound = new Audio("./src/church-bell.mp3");
+
 class Game {
   constructor() {
     this.batPlayer = new BatPlayer();
@@ -11,34 +13,34 @@ class Game {
     this.board = document.getElementById("board");
     this.preyInterval = 7500;
 
+    this.gadgetArr = [];
+    this.counterGadget = 0;
+
     this.createPreyIntervalID = null;
     this.removePreyIntervalID = null;
     this.dateTimeIntervalID = null;
+    this.gadgetIntervalId = null;
 
     this.batPlayer.animateBat();
-
-    this.start(1);
+    this.detectPlayerMovement();
   }
 
   start(level) {
     this.preyArr = [];
-
     const levelCounter = document.getElementById("gameLevel");
+
     levelCounter.innerHTML = `Level ${level}`;
-    this.detectPlayerMovement();
 
     //create Prey
     this.createPreyIntervalId = setInterval(() => {
-      this.counterPrey++;
-      this.preyElement = new Prey();
-      this.preyElement.createPrey(this.counterPrey);
-      this.preyArr.push(this.preyElement);
-      console.log("test");
-    }, 4000);
+      this.addPrey();
+    }, 2000);
 
     //Remove Prey
     this.removePreyIntervalID = setInterval(() => {
-      this.preyElement.removePrey(this.preyArr[0].prey.getAttribute("id"));
+      this.preyElement.removePreyElement(
+        this.preyArr[0].prey.getAttribute("id")
+      );
       this.preyArr.shift();
     }, this.calculatePreyInterval(level));
 
@@ -61,6 +63,22 @@ class Game {
         this.dateTimeMinutes
       )} h`;
     }, 70);
+
+    if (level >= 2) {
+      this.gadgetIntervalId = setInterval(() => {
+        this.counterGadget++;
+        this.gadgetElement = new Gadget();
+        this.gadgetElement.createGadget(this.counterGadget);
+        this.gadgetArr.push(this.gadgetElement);
+      }, 10000);
+    }
+  }
+
+  addPrey() {
+    this.counterPrey++;
+    this.preyElement = new Prey();
+    this.preyElement.createPrey(this.counterPrey);
+    this.preyArr.push(this.preyElement);
   }
 
   calculatePreyInterval(level) {
@@ -80,55 +98,79 @@ class Game {
   detectPlayerMovement() {
     document.addEventListener("keydown", (event) => {
       event.preventDefault;
+      const randomIterations = Math.floor(Math.random() * 3) + 1;
+
       switch (event.code) {
         case "ArrowUp":
           this.batPlayer.animateBat("ArrowUp");
           this.batPlayer.moveBatUp();
-          const preyDetectUp = this.batPlayer.checkForPrey(this.preyArr);
-          if (preyDetectUp) {
-            this.preyArr.splice(preyDetectUp[1], 1);
-            this.preyElement.removePrey(
-              preyDetectUp[0].prey.getAttribute("id")
-            );
+          const detectedPreyUp = this.batPlayer.checkForPrey(this.preyArr);
+          if (detectedPreyUp) {
+            this.removePrey(detectedPreyUp);
+          } else if (this.batPlayer.checkForGadget(this.gadgetArr)) {
+            this.removeGadget(this.batPlayer.checkForGadget(this.gadgetArr));
+            for (let i = 0; i < randomIterations; i++) {
+              this.addPrey();
+            }
           }
           break;
         case "ArrowDown":
           this.batPlayer.animateBat("ArrowDown");
           this.batPlayer.moveBatDown();
-          const preyDetectDown = this.batPlayer.checkForPrey(this.preyArr);
-          if (preyDetectDown) {
-            this.preyArr.splice(preyDetectDown[1], 1);
-            this.preyElement.removePrey(
-              preyDetectDown[0].prey.getAttribute("id")
-            );
+          const detectedPreyDown = this.batPlayer.checkForPrey(this.preyArr);
+          if (detectedPreyDown) {
+            this.removePrey(detectedPreyDown);
+          } else if (this.batPlayer.checkForGadget(this.gadgetArr)) {
+            this.removeGadget(this.batPlayer.checkForGadget(this.gadgetArr));
+            for (let i = 0; i < randomIterations; i++) {
+              this.addPrey();
+            }
           }
           break;
         case "ArrowRight":
           this.batPlayer.animateBat("ArrowRight");
           this.batPlayer.moveBatRight();
-          const preyDetectRight = this.batPlayer.checkForPrey(this.preyArr);
-          if (preyDetectRight) {
-            this.preyArr.splice(preyDetectRight[1], 1);
-            this.preyElement.removePrey(
-              preyDetectRight[0].prey.getAttribute("id")
-            );
+          const detectedPreyRight = this.batPlayer.checkForPrey(this.preyArr);
+          if (detectedPreyRight) {
+            this.removePrey(detectedPreyRight);
+          } else if (this.batPlayer.checkForGadget(this.gadgetArr)) {
+            this.removeGadget(this.batPlayer.checkForGadget(this.gadgetArr));
+            for (let i = 0; i < randomIterations; i++) {
+              this.addPrey();
+            }
           }
           break;
         case "ArrowLeft":
           this.batPlayer.animateBat("ArrowLeft");
           this.batPlayer.moveBatLeft();
-          const preyDetectLeft = this.batPlayer.checkForPrey(this.preyArr);
-          if (preyDetectLeft) {
-            this.preyArr.splice(preyDetectLeft[1], 1);
-            this.preyElement.removePrey(
-              preyDetectLeft[0].prey.getAttribute("id")
-            );
+          const detectedPreyLeft = this.batPlayer.checkForPrey(this.preyArr);
+          if (detectedPreyLeft) {
+            this.removePrey(detectedPreyLeft);
+          } else if (this.batPlayer.checkForGadget(this.gadgetArr)) {
+            this.removeGadget(this.batPlayer.checkForGadget(this.gadgetArr));
+            for (let i = 0; i < randomIterations; i++) {
+              this.addPrey();
+            }
           }
           break;
         default:
           break;
       }
     });
+  }
+  removePrey(detectedPreyArr) {
+    this.preyArr.splice(detectedPreyArr[1], 1);
+    this.preyElement.removePreyElement(
+      detectedPreyArr[0].prey.getAttribute("id")
+    );
+  }
+
+  removeGadget(detectedGadgetArr) {
+    this.gadgetArr.splice(detectedGadgetArr[1], 1);
+    console.log(detectedGadgetArr);
+    this.gadgetElement.removeGadgetElement(
+      detectedGadgetArr[0].gadget.getAttribute("id")
+    );
   }
 
   end() {
@@ -138,12 +180,17 @@ class Game {
     });
     if (this.batPlayer.showEnergyLevel() >= 80) {
       this.level++;
-      this.batPlayer.reduceEnergy();
+      this.newEnergy = this.batPlayer.reduceEnergy();
+      const energyLevel = document.getElementById("energyLevel");
+      energyLevel.innerHTML = `Your energy level: ${this.newEnergy}%`;
+
       this.dateTimeHour = 22;
       this.dateTimeMinutes = 0;
       clearInterval(this.createPreyIntervalId);
       clearInterval(this.removePreyIntervalID);
       clearInterval(this.dateTimeIntervalID);
+      clearInterval(this.gadgetIntervalId);
+      bellSound.play();
       this.start(this.level);
     } else {
       location.href = "./gameover.html";

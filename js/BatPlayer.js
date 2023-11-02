@@ -1,4 +1,5 @@
 const biteSound = new Audio("./src/bite-sound.mp3");
+const fireSound = new Audio("./src/fire-sound.mp3");
 
 class BatPlayer {
   constructor() {
@@ -6,7 +7,7 @@ class BatPlayer {
     this.height = 2;
     this.positionX = 0;
     this.positionY = 0;
-    this.energy = 20;
+    this.energy = 1;
     this.batPlayer = null;
 
     this.board = document.getElementById("board");
@@ -25,29 +26,30 @@ class BatPlayer {
   }
 
   moveBatUp() {
-    if (this.positionY < this.boardHeight - this.height) {
-      this.positionY = this.positionY + 0.8;
+    if (this.positionY < this.boardHeight - this.height * 1.5) {
+      this.positionY = this.positionY + 1;
       this.batPlayer.style.bottom = this.positionY + "rem";
     }
   }
 
   moveBatDown() {
     if (this.positionY > 0) {
-      this.positionY = this.positionY - 0.8;
+      this.positionY = this.positionY - 1;
       this.batPlayer.style.bottom = this.positionY + "rem";
     }
+    console.log(this.positionY);
   }
 
   moveBatLeft() {
     if (this.positionX > 0) {
-      this.positionX = this.positionX - 0.8;
+      this.positionX = this.positionX - 1;
       this.batPlayer.style.left = this.positionX + "rem";
     }
   }
 
   moveBatRight() {
     if (this.positionX < this.boardWidth - this.width) {
-      this.positionX = this.positionX + 0.8;
+      this.positionX = this.positionX + 1;
       this.batPlayer.style.left = this.positionX + "rem";
     }
   }
@@ -62,13 +64,29 @@ class BatPlayer {
         this.positionY + this.height > preyArr[i].positionY
       ) {
         biteSound.play();
-        if (this.energy <= 100) {
+        if (this.energy <= 90) {
           this.energy += 10;
+        } else {
+          this.energy = 100;
         }
         return [preyArr[i], i];
       }
     }
     energyLevel.innerHTML = `Your energy level: ${this.energy}%`;
+  }
+
+  checkForGadget(gadgetArr) {
+    for (let i = 0; i < gadgetArr.length; i++) {
+      if (
+        this.positionX < gadgetArr[i].positionX + gadgetArr[i].width &&
+        this.positionX + this.width > gadgetArr[i].positionX &&
+        this.positionY < gadgetArr[i].positionY + gadgetArr[i].height &&
+        this.positionY + this.height > gadgetArr[i].positionY
+      ) {
+        fireSound.play();
+        return [gadgetArr[i], i];
+      }
+    }
     return false;
   }
 
@@ -77,7 +95,9 @@ class BatPlayer {
   }
 
   reduceEnergy() {
-    this.energy -= this.energy * 0.8;
+    this.energy *= 0.2;
+    this.energy = Math.round(this.energy);
+    return this.energy;
   }
 
   animateBat(arrowKey) {

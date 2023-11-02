@@ -26,7 +26,7 @@ class Prey {
     this.board.appendChild(this.prey);
   }
 
-  removePrey(id) {
+  removePreyElement(id) {
     const eatenPreyElement = document.getElementById(id);
     this.board.removeChild(eatenPreyElement);
   }
